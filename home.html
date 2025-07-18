@@ -50,7 +50,6 @@
         .circle {
             position: absolute;
             border-radius: 50%;
-            background: linear-gradient(120deg, var(--primary), var(--secondary));
         }
         
         .circle-1 {
@@ -68,6 +67,7 @@
             -webkit-animation-delay: 3.5s;
             animation-delay: 3.5s;
             animation-direction: alternate;
+            background: linear-gradient(120deg,#fa4d4d, #9255d8);
         }
         
         .circle-2 {
@@ -85,6 +85,8 @@
             -webkit-animation-delay: 2s;
             animation-delay: 2s;
             animation-direction: alternate;
+            
+            background: linear-gradient(120deg, #7ed5fd, #ff458c);
         }
         
         @keyframes float {
@@ -319,72 +321,119 @@
         }
         
         .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0px auto;
+            padding: 0 20px;
         }
-        
+
         .portfolio-item {
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
+            border-radius: 20px;
             overflow: hidden;
             transition: var(--transition);
             border: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: var(--blur);
+            display: flex;
+            min-height: 400px;
+            margin: 50px auto;
         }
-        
+
         .portfolio-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.3);
         }
-        
+
         .portfolio-img {
-            height: 250px;
+            flex: 1;
+            min-height: 100%;
             overflow: hidden;
             position: relative;
         }
-        
+
         .portfolio-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: var(--transition);
         }
-        
-        .portfolio-item:hover .portfolio-img img {
-            transform: scale(1.1);
+
+        .portfolio-content {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
-        
-        .portfolio-info {
-            padding: 20px;
-        }
-        
+
         .portfolio-info h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
             color: white;
+            position: relative;
+            padding-bottom: 15px;
         }
-        
+
+        .portfolio-info h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+
         .portfolio-info p {
             color: var(--lighter);
-            margin-bottom: 15px;
-            font-size: 0.95rem;
+            margin-bottom: 25px;
+            font-size: 1.0rem;
+            line-height: 1.8;
         }
-        
+
         .portfolio-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 12px;
+            margin-top: 20px;
         }
-        
+
         .tag {
-            background: rgb(137, 43, 226);
+            background: rgba(137, 43, 226, 0.2);
             color: white;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.9rem;
             font-weight: 500;
+            border: 1px solid rgba(137, 43, 226, 0.5);
+            transition: var(--transition);
+        }
+
+        .tag:hover {
+            background: rgba(137, 43, 226, 0.4);
+        }
+
+        /* Alternate layout for even items */
+        .portfolio-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        @media (max-width: 900px) {
+            .portfolio-item {
+                flex-direction: column;
+                min-height: auto;
+            }
+            
+            .portfolio-img {
+                height: 300px;
+            }
+            
+            .portfolio-content {
+                padding: 30px;
+            }
         }
         
         /* About Section */
@@ -494,6 +543,9 @@
         
         .contact-details {
             margin-bottom: 30px;
+            display: flex;
+            flex-direction: row;
+            gap: 100px;
         }
         
         .contact-item {
@@ -518,7 +570,7 @@
         
         .social-links {
             display: flex;
-            gap: 15px;
+            gap: 30px;
         }
         
         .social-links a {
@@ -534,6 +586,7 @@
             transition: var(--transition);
             border: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 1.1rem;
+            margin: 20px 0px;
         }
         
         .social-links a:hover {
@@ -689,6 +742,45 @@
             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
             line-height: 32px;
         }
+        .hero-line {
+            font-size: 2rem;
+            font-weight: 500;
+            color: #ffffff8c;
+        }
+
+        .highlight {
+            transition: color 0.3s, background-color 0.3s, padding 0.3s;
+            padding: 0 5px;
+            border-radius: 2px;
+            cursor: pointer;
+            color: transparent;
+            -webkit-text-stroke: 1px #ffffffc4;
+        }
+
+            /* Unique hover effects */
+        .design:hover {
+            background-color: #ffe0e0;
+            color: #c70039;
+        }
+
+        .build:hover {
+            background-color: #e0f7fa;
+            color: #00796b;
+        }
+
+        .ideas:hover {
+            background-color: #fff3cd;
+            color: #b38f00;
+        }
+        .project-link {
+            text-decoration: none;
+            font-weight: 600;
+            color: #1e1e1e;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+
     </style>
 </head>
 <body>
@@ -719,8 +811,12 @@
         <section class="hero" id="home">
             <div class="container">
                 <h1>Hello, I'm <span>Ariba Siddiqui</span></h1>
-                <h2>A UI/UX Designer turning ideas into intuitive, impactful digital experiences.</h2>
-                <p class="para">I design with empathy and precision — crafting beautiful, user-centered interfaces that solve real problems through thoughtful strategy.</p>
+                <h2 class="hero-line"> I
+                    <span class="highlight design">design</span>, 
+                    <span class="highlight build">build</span>, and 
+                    <span class="highlight ideas">bring ideas to life</span>.
+                </h2>
+                <p class="para">I design with empathy and precision — crafting beautiful, user-centered interfaces that solve real problems through thoughtful design strategy and seamless technical development.</p>
                 <div>
                     <a href="#portfolio" class="btn">View My Work</a>
                     <a href="#contact" class="btn btn-outline">Contact Me</a>
@@ -742,137 +838,159 @@
                     <button class="filter-btn" data-filter="javascript">JavaScript Projects</button>
                     <button class="filter-btn" data-filter="graphic">Posters & Logos</button>
                 </div>
-                
-                <div class="portfolio-grid">
-                    <!-- Website Projects -->
-                    <div class="portfolio-item" data-category="website">
-                        <div class="portfolio-img">
-                            <img src="assets/app1.png" alt="Website Project">
-                        </div>
-                        <div class="portfolio-info">
-                            <h3>E-commerce Website Redesign</h3>
-                            <p>A complete redesign of an online store focusing on improving conversion rates and user experience.</p>
-                            <div class="portfolio-tags">
-                                <span class="tag">UI Design</span>
-                                <span class="tag">UX Research</span>
-                                <span class="tag">Web</span>
-                            </div>
-                        </div>
-                    </div>
                     
-                    <!-- Mobile App Projects -->
+                    <!-- Mobile App Project -->
                     <div class="portfolio-item" data-category="mobile">
                         <div class="portfolio-img">
-                            <img src="assets/app2.png" alt="Mobile App Project">
+                            <a href="feed.html" class="project-link">
+                                <img src="assets/app6.png" alt="Food Donation App">
+                            </a>
                         </div>
-                        <div class="portfolio-info">
-                            <h3>Fitness Tracking App</h3>
-                            <p>Mobile application for tracking workouts, nutrition, and health metrics with personalized recommendations.</p>
-                            <div class="portfolio-tags">
-                                <span class="tag">Mobile</span>
-                                <span class="tag">iOS</span>
-                                <span class="tag">Android</span>
+                        <div class="portfolio-content">
+                            <div class="portfolio-info">
+                                <a href="feed.html" class="project-link">
+                                    <h3>Feed Forward</h3></a>                                
+                                <p>FeedForward is a mobile app I designed and developed with my team to help reduce food waste by connecting 
+                                    restaurants with people and organizations in need. Restaurants can list surplus food, and users can request,
+                                     buy at a discount, or even negotiate. I focused on creating a clean, user-friendly interface and seamless 
+                                     experience — from intuitive listings to impact dashboards and volunteer-powered deliveries.</p>
+                                <div class="portfolio-tags">
+                                    <span class="tag">Figma</span>
+                                    <span class="tag">Canva</span>
+                                    <span class="tag">React Native</span>
+                                    <span class="tag">Nodejs</span>
+                                    <span class="tag">MongoDB</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- JavaScript Projects -->
-                    <div class="portfolio-item" data-category="javascript">
-                        <div class="portfolio-img">
-                            <img src="assets/app3.png" alt="JavaScript Project">
-                        </div>
-                        <div class="portfolio-info">
-                            <h3>Interactive Dashboard</h3>
-                            <p>Data visualization dashboard with interactive charts and real-time updates using JavaScript.</p>
-                            <div class="portfolio-tags">
-                                <span class="tag">JavaScript</span>
-                                <span class="tag">D3.js</span>
-                                <span class="tag">Data Viz</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Graphic Design Projects -->
-                    <div class="portfolio-item" data-category="graphic">
-                        <div class="portfolio-img">
-                            <img src="https://source.unsplash.com/random/600x400/?poster,design,dark" alt="Poster Design">
-                        </div>
-                        <div class="portfolio-info">
-                            <h3>Music Festival Poster Series</h3>
-                            <p>Vibrant poster series for a summer music festival with bold typography and illustrations.</p>
-                            <div class="portfolio-tags">
-                                <span class="tag">Poster</span>
-                                <span class="tag">Typography</span>
-                                <span class="tag">Illustration</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Website Projects -->
-                    <div class="portfolio-item" data-category="website">
-                        <div class="portfolio-img">
-                            <img src="https://source.unsplash.com/random/600x400/?portfolio,website,dark" alt="Website Project">
-                        </div>
-                        <div class="portfolio-info">
-                            <h3>Artist Portfolio Website</h3>
-                            <p>Minimalist portfolio website for a contemporary artist showcasing their work in an elegant way.</p>
-                            <div class="portfolio-tags">
-                                <span class="tag">Web Design</span>
-                                <span class="tag">Responsive</span>
-                                <span class="tag">CMS</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Mobile App Projects -->
+
+                    <!-- Mobile App Project 2 -->
                     <div class="portfolio-item" data-category="mobile">
                         <div class="portfolio-img">
-                            <img src="https://source.unsplash.com/random/600x400/?finance,app,dark" alt="Mobile App Project">
+                            <a href="dummy.html" class="project-link">
+                                <img src="assets/app21.png" alt="Budgeting App">
+                            </a>
                         </div>
-                        <div class="portfolio-info">
-                            <h3>Budgeting App</h3>
-                            <p>Personal finance app that helps users track expenses, set budgets, and visualize spending patterns.</p>
-                            <div class="portfolio-tags">
-                                <span class="tag">UX Design</span>
-                                <span class="tag">Prototyping</span>
-                                <span class="tag">User Testing</span>
+                        <div class="portfolio-content">
+                            <div class="portfolio-info">
+                                <a href="dummy.html" class="project-link">
+                                    <h3>Four Atoms</h3>
+                                </a>
+                                <p>Four Atoms is a client project I designed and developed with my team for a cutting-edge sportswear brand that blends innovation with performance.
+                                     The app features a sleek, modern interface and includes an AR try-on experience—allowing users to virtually try on 
+                                     apparel before purchasing. I focused on delivering a clean, intuitive user experience that highlights the brand's bold 
+                                     identity while making the shopping journey seamless and engaging.</p>
+                                <div class="portfolio-tags">
+                                    <span class="tag">Justinmind</span>
+                                    <span class="tag">React Native</span>
+                                    <span class="tag">Nodejs</span>
+                                    <span class="tag">Firebase</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- JavaScript Projects -->
+                     <!-- Website Project 1 -->
+                    <div class="portfolio-item" data-category="website">
+                        <div class="portfolio-img">
+                            <a href="dummy.html" class="project-link">
+                                 <img src="assets/web1 (2).png" alt="Artist Portfolio">
+                            </a>
+                        </div>
+                        <div class="portfolio-content">
+                            <div class="portfolio-info">
+                                <a href="dummy.html" class="project-link">
+                                    <h3>Soul Support</h3>
+                                </a>
+                                <p>Soul Support is a mental health platform I designed and developed with my team to make emotional wellbeing more accessible. 
+                                    It allows users to book one-on-one sessions with certified psychiatrists, join webinars, chat with an AI-powered support bot, 
+                                    and explore a library of wellness blogs. My focus was on building a calm, approachable interface that supports users through every 
+                                    step of their mental health journey.</p>
+                                <div class="portfolio-tags">
+                                    <span class="tag">Prototyping</span>
+                                    <span class="tag">React</span>
+                                    <span class="tag">Nodejs</span>
+                                    <span class="tag">PostgreSQL</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- JavaScript Project
                     <div class="portfolio-item" data-category="javascript">
                         <div class="portfolio-img">
-                            <img src="https://source.unsplash.com/random/600x400/?game,javascript,dark" alt="JavaScript Project">
+                            <img src="assets/app3.png" alt="Dashboard">
                         </div>
-                        <div class="portfolio-info">
-                            <h3>Browser Game</h3>
-                            <p>Interactive browser-based game built with vanilla JavaScript featuring custom animations.</p>
-                            <div class="portfolio-tags">
-                                <span class="tag">Game Design</span>
-                                <span class="tag">Canvas</span>
-                                <span class="tag">Animation</span>
+                        <div class="portfolio-content">
+                            <div class="portfolio-info">
+                                <h3>Interactive Dashboard</h3>
+                                <p>Data visualization dashboard with interactive charts and real-time updates. Built with modern JavaScript frameworks, this dashboard allows users to filter, sort, and analyze complex datasets with smooth animations and responsive design.</p>
+                                <div class="portfolio-tags">
+                                    <span class="tag">JavaScript</span>
+                                    <span class="tag">D3.js</span>
+                                    <span class="tag">Data Viz</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     
-                    <!-- Graphic Design Projects -->
-                    <div class="portfolio-item" data-category="graphic">
+                    <!-- Graphic Design Project -->
+                    <!-- <div class="portfolio-item" data-category="graphic">
                         <div class="portfolio-img">
-                            <img src="https://source.unsplash.com/random/600x400/?logo,branding,dark" alt="Logo Design">
+                            <img src="assets/app2.png" alt="Music Festival Posters">
                         </div>
-                        <div class="portfolio-info">
-                            <h3>Startup Brand Identity</h3>
-                            <p>Complete brand identity including logo, color palette, typography, and brand guidelines.</p>
-                            <div class="portfolio-tags">
-                                <span class="tag">Logo</span>
-                                <span class="tag">Branding</span>
-                                <span class="tag">Identity</span>
+                        <div class="portfolio-content">
+                            <div class="portfolio-info">
+                                <h3>Music Festival Poster Series</h3>
+                                <p>Vibrant poster series for a summer music festival featuring bold typography and custom illustrations. The design system included main posters, social media assets, and merchandise, creating a cohesive visual identity across all touchpoints.</p>
+                                <div class="portfolio-tags">
+                                    <span class="tag">Poster</span>
+                                    <span class="tag">Typography</span>
+                                    <span class="tag">Illustration</span>
+                                </div>
                             </div>
                         </div>
                     </div>
+                     -->
+                    
+                    <!-- JavaScript Project 2 -->
+                    <!-- <div class="portfolio-item" data-category="javascript">
+                        <div class="portfolio-img">
+                            <img src="https://source.unsplash.com/random/600x400/?game,javascript,dark" alt="Browser Game">
+                        </div>
+                        <div class="portfolio-content">
+                            <div class="portfolio-info">
+                                <h3>Browser Game</h3>
+                                <p>Interactive browser-based game built with vanilla JavaScript featuring custom animations and physics. The game includes multiple levels, character customization, and leaderboard functionality, all optimized for smooth performance across devices.</p>
+                                <div class="portfolio-tags">
+                                    <span class="tag">Game Design</span>
+                                    <span class="tag">Canvas</span>
+                                    <span class="tag">Animation</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    
+                    <!-- Graphic Design Project 2 -->
+                    <!-- <div class="portfolio-item" data-category="graphic">
+                        <div class="portfolio-img">
+                            <img src="https://source.unsplash.com/random/600x400/?logo,branding,dark" alt="Brand Identity">
+                        </div>
+                        <div class="portfolio-content">
+                            <div class="portfolio-info">
+                                <h3>Startup Brand Identity</h3>
+                                <p>Complete brand identity including logo, color palette, typography, and brand guidelines. The versatile design system works across digital and print media, establishing a strong, recognizable brand presence that resonates with the target audience.</p>
+                                <div class="portfolio-tags">
+                                    <span class="tag">Logo</span>
+                                    <span class="tag">Branding</span>
+                                    <span class="tag">Identity</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
                 </div>
-            </div>
+            <!-- </div> -->
         </section>
 
         <!-- About Section -->
@@ -944,48 +1062,36 @@
                 <div class="contact-container">
                     <div class="contact-info">
                         <h3>Let's talk about your project</h3>
-                        <p>I'm currently available for freelance work and would love to hear about your project. Feel free to reach out!</p>
+                        <p>I'm currently available for full time position or freelance work and would love to hear about your project. Feel free to reach out!</p>
                         
                         <div class="contact-details">
                             <div class="contact-item">
                                 <div class="contact-icon">
                                     <i class="fas fa-envelope"></i>
                                 </div>
-                                <span>your.email@example.com</span>
+                                <span>aribasiddiqui2003@gmail.com</span>
                             </div>
                             
                             <div class="contact-item">
                                 <div class="contact-icon">
                                     <i class="fas fa-phone"></i>
                                 </div>
-                                <span>+1 (123) 456-7890</span>
+                                <span>+92 336 2168153</span>
                             </div>
                             
                             <div class="contact-item">
                                 <div class="contact-icon">
                                     <i class="fas fa-map-marker-alt"></i>
                                 </div>
-                                <span>San Francisco, CA</span>
+                                <span>Federal B Area, Block 18, Karachi</span>
                             </div>
                         </div>
-                        
                         <div class="social-links">
-                            <a href="#"><i class="fab fa-dribbble"></i></a>
-                            <a href="#"><i class="fab fa-behance"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="https://github.com/Aribasiddiqui44"><i class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/ariba-siddiqui-4929b122b/"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                     
-                    <div class="contact-form">
-                        <form>
-                            <input type="text" placeholder="Your Name" required>
-                            <input type="email" placeholder="Your Email" required>
-                            <input type="text" placeholder="Subject">
-                            <textarea placeholder="Your Message" required></textarea>
-                            <button type="submit" class="btn">Send Message</button>
-                        </form>
-                    </div>
                 </div>
             </div>
         </section>
@@ -1005,7 +1111,7 @@
         </footer>
     </div> <!-- End of glass container -->
 
-    <script>
+     <script>
         // Portfolio Filter
         const filterButtons = document.querySelectorAll('.filter-btn');
         const portfolioItems = document.querySelectorAll('.portfolio-item');
@@ -1019,16 +1125,45 @@
                 
                 const filterValue = button.getAttribute('data-filter');
                 
+                // First hide all items
                 portfolioItems.forEach(item => {
-                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
+                    item.style.display = 'none';
                 });
+                
+                // Then show matching items with proper layout
+                setTimeout(() => {
+                    portfolioItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.style.display = 'flex'; // Use flex to maintain layout
+                            
+                            // Reapply alternating layout
+                            const visibleItems = Array.from(portfolioItems).filter(item => 
+                                item.style.display === 'flex' || 
+                                item.style.display === ''
+                            );
+                            
+                            visibleItems.forEach((item, index) => {
+                                if (index % 2 === 1) {
+                                    item.style.flexDirection = 'row-reverse';
+                                } else {
+                                    item.style.flexDirection = 'row';
+                                }
+                            });
+                        }
+                    });
+                }, 10);
             });
         });
         
+        // Initialize alternating layout
+        document.addEventListener('DOMContentLoaded', () => {
+            portfolioItems.forEach((item, index) => {
+                if (index % 2 === 1) {
+                    item.style.flexDirection = 'row-reverse';
+                }
+            });
+        });
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1042,7 +1177,7 @@
         
         // Add animation to elements when they come into view
         const animateOnScroll = () => {
-            const elements = document.querySelectorAll('.portfolio-item, .about-content, .contact-container');
+            const elements = document.querySelectorAll('.portfolio-item');
             
             elements.forEach(element => {
                 const elementPosition = element.getBoundingClientRect().top;
@@ -1056,7 +1191,7 @@
         };
         
         // Set initial state for animated elements
-        document.querySelectorAll('.portfolio-item, .about-content, .contact-container').forEach(element => {
+        document.querySelectorAll('.portfolio-item').forEach(element => {
             element.style.opacity = '0';
             element.style.transform = 'translateY(30px)';
             element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
