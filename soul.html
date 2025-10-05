@@ -602,7 +602,95 @@
                 height: 10px;
             }
         }
-
+        
+        .pdf-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .pdf-control-btn {
+            background: rgba(138, 43, 226, 0.7);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+        
+        .pdf-control-btn:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        /* PDF Viewer Modal */
+        .pdf-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .pdf-modal-content {
+            width: 80%;
+            height: 90%;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.5);
+        }
+        
+        .pdf-modal iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .close-modal:hover {
+            color: var(--primary);
+            transform: scale(1.1);
+        }
+        
+        @media (max-width: 768px) {
+            .pdf-scroller {
+                width: 300px;
+                height: 164px;
+            }
+            
+            .pdf-page {
+                width: 300px;
+                height: 164px;
+            }
+            
+            .scroller-dot {
+                width: 10px;
+                height: 10px;
+            }
+            
+            .pdf-modal-content {
+                width: 95%;
+                height: 80%;
+            }
+        }
         /* Development Section Styles */
     .tech-stack {
         margin-top: 30px;
@@ -887,9 +975,8 @@
     .testimonial-author p {
         color: var(--lighter);
         font-size: 0.9rem;
-    }
-        
-        /* Responsive Design */
+    }        
+    /* Responsive Design */
         @media (max-width: 1200px) {
             .container {
                 padding: 0 60px;
@@ -1200,8 +1287,9 @@ By combining AI, telehealth, and human expertise, Soul Support provides scalable
                     <div class="vertical-scroller" id="donor-scroller">
                         <div class="vertical-scroller-track">
                             <img src="assets/soul1c.jpg" alt="Donor Screen">
-                            <img src="assets/soul2c.jpg" alt="Donor Screen">
+                            <img src="assets/soul3cc.jpg" alt="Donor Screen">
                             <img src="assets/soul3.jpg" alt="Donor Screen">
+                            <img src="assets/soul2c.jpg" alt="Donor Screen">
                             <img src="assets/soul4.jpg" alt="Donor Screen">
                             <img src="assets/soul5.jpg" alt="Donor Screen">
                             <img src="assets/soul6.jpg" alt="Donor Screen">
@@ -1211,31 +1299,14 @@ By combining AI, telehealth, and human expertise, Soul Support provides scalable
                         <div class="scroller-nav" id="donor-nav"></div>
                         <div class="scroller-hint">Scroll to navigate</div>
                     </div>
-                </div>
-
-                <!-- Volunteer Screens Vertical Scroller -->
-                <div class="slider-container">
-                    <h3 class="slider-title">Other Pages</h3>
-                    <div class="vertical-scroller" id="volunteer-scroller">
-                        <div class="vertical-scroller-track">
-                            <img src="assets/vol_1.png" alt="Volunteer Screen">
-                            <img src="assets/vol_2.png" alt="Volunteer Screen">
-                            <img src="assets/vol_3.png" alt="Volunteer Screen">
-                            <img src="assets/vol_4.png" alt="Volunteer Screen">
-                            <img src="assets/vol_5.png" alt="Volunteer Screen">
-                            <img src="assets/vol_6.png" alt="Volunteer Screen">
-                            <img src="assets/vol_7.png" alt="Volunteer Screen">
-                            <img src="assets/vol_8.png" alt="Volunteer Screen">
-                            <img src="assets/vol_9.png" alt="Volunteer Screen">
-                            <img src="assets/vol_10.png" alt="Volunteer Screen">
-                            <img src="assets/vol_11.png" alt="Volunteer Screen">
-                            <img src="assets/vol_12.png" alt="Volunteer Screen">
-                            <img src="assets/vol_13.png" alt="Volunteer Screen">
-                            <img src="assets/vol_14.png" alt="Volunteer Screen">
-                        </div>
-                        <div class="scroller-progress" id="volunteer-progress"></div>
-                        <div class="scroller-nav" id="volunteer-nav"></div>
-                        <div class="scroller-hint">Scroll to navigate</div>
+                    
+                    <div class="pdf-controls">
+                        <button class="pdf-control-btn" onclick="openPdfModal()">
+                            <i class="fas fa-expand"></i> View Full PDF
+                        </button>
+                        <button class="pdf-control-btn" onclick="downloadPdf()">
+                            <i class="fas fa-download"></i> Download PDF
+                        </button>
                     </div>
                 </div>
             </div>
@@ -1393,10 +1464,10 @@ By combining AI, telehealth, and human expertise, Soul Support provides scalable
         <section class="project-section">
             <div class="container">
                 <div class="project-navigation">
-                    <a href="dummy.html" class="nav-button prev">
+                    <a href="feed.html" class="nav-button prev">
                         <i class="fas fa-arrow-left"></i> Previous Project
                     </a>
-                    <a href="dummy.html" class="nav-button next">
+                    <a href="feed.html" class="nav-button next">
                         Next Project <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
@@ -1417,6 +1488,16 @@ By combining AI, telehealth, and human expertise, Soul Support provides scalable
             </div>
         </footer>
     </div> <!-- End of glass container -->
+
+    <!-- PDF Modal -->
+    <div class="pdf-modal" id="pdfModal">
+        <div class="close-modal" onclick="closePdfModal()">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="pdf-modal-content">
+            <iframe src="SOUL SUPPORT PICS (11).pdf" id="pdfViewer"></iframe>
+        </div>
+    </div>
 
     <script>
         // Smooth scrolling for navigation links
@@ -1456,6 +1537,7 @@ By combining AI, telehealth, and human expertise, Soul Support provides scalable
         window.addEventListener('scroll', animateOnScroll);
         window.addEventListener('load', animateOnScroll);
 
+        
         // Initialize all vertical scrollers
         function initVerticalScroller(scrollerId) {
             const scroller = document.getElementById(scrollerId);
@@ -1527,7 +1609,35 @@ By combining AI, telehealth, and human expertise, Soul Support provides scalable
             updateProgress();
         }
         
-        // Initialize scrollers when DOM is loaded
+        // PDF modal functions
+        function openPdfModal() {
+            document.getElementById('pdfModal').style.display = 'flex';
+        }
+        
+        function closePdfModal() {
+            document.getElementById('pdfModal').style.display = 'none';
+        }
+        
+        function downloadPdf() {
+            const link = document.createElement('a');
+            link.href = 'SOUL SUPPORT PICS (11).pdf';
+            link.download = 'SOUL SUPPORT PICS (11).pdf';
+            link.click();
+        }
+        
+        // Close modal when clicking outside content
+        document.getElementById('pdfModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePdfModal();
+            }
+        });
+        
+        // Initialize scroller when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            initPdfScroller();
+        
+        });
+         // Initialize scrollers when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
             initVerticalScroller('donor-scroller');
             initVerticalScroller('volunteer-scroller');
